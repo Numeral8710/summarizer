@@ -6,22 +6,16 @@ from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
 
 
-LLM = OpenAI(temperature=0.5, openai_api_key=os.environ["OPENAI_API_KEY"])
+LLM = OpenAI(temperature=1, openai_api_key=os.environ["OPENAI_API_KEY"])
 
 # MapReduce (fast) prompts
-MAP_PROMPT = """Write a summary of this chunk of text that includes the main points and any important details.
+MAP_PROMPT = """Summarize this chunk of text. Include the main points and the important details.
 {text}
 """
 COMBINE_PROMPT = """Write a concise summary of the following text delimited by triple backquotes.
-Return your response in bullet points which covers the key points of the text.
+Return your response in bullet points. Make sure the bullet points cover the key points of the text.
 ```{text}```
 BULLET POINT SUMMARY:
-"""
-
-# Refine (slow) prompts
-QUESTION_PROMPT = """Please provide a summary of the following text.
-TEXT: {text}
-SUMMARY:
 """
 
 
